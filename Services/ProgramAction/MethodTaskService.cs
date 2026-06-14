@@ -97,6 +97,7 @@ namespace TaskManagerPro.Services
                     Console.WriteLine("2. Pending tasks");
                     Console.WriteLine("3. Tasks in progress");
                     Console.WriteLine("4. Completed tasks");
+                    Console.Write("Which tasks would you like to see: ");
                     int secondChoice;
                     if(!int.TryParse(Console.ReadLine(), out secondChoice))
                     {
