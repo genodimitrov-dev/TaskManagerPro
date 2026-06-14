@@ -1,0 +1,14 @@
+C:\Projects\TaskManagerPro\bin\Debug\net10.0\TaskManagerPro.exe
+C:\Projects\TaskManagerPro\bin\Debug\net10.0\TaskManagerPro.deps.json
+C:\Projects\TaskManagerPro\bin\Debug\net10.0\TaskManagerPro.runtimeconfig.json
+C:\Projects\TaskManagerPro\bin\Debug\net10.0\TaskManagerPro.dll
+C:\Projects\TaskManagerPro\bin\Debug\net10.0\TaskManagerPro.pdb
+C:\Projects\TaskManagerPro\obj\Debug\net10.0\TaskManagerPro.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\TaskManagerPro\obj\Debug\net10.0\TaskManagerPro.AssemblyInfoInputs.cache
+C:\Projects\TaskManagerPro\obj\Debug\net10.0\TaskManagerPro.AssemblyInfo.cs
+C:\Projects\TaskManagerPro\obj\Debug\net10.0\TaskManagerPro.csproj.CoreCompileInputs.cache
+C:\Projects\TaskManagerPro\obj\Debug\net10.0\TaskManagerPro.dll
+C:\Projects\TaskManagerPro\obj\Debug\net10.0\refint\TaskManagerPro.dll
+C:\Projects\TaskManagerPro\obj\Debug\net10.0\TaskManagerPro.pdb
+C:\Projects\TaskManagerPro\obj\Debug\net10.0\TaskManagerPro.genruntimeconfig.cache
+C:\Projects\TaskManagerPro\obj\Debug\net10.0\ref\TaskManagerPro.dll
