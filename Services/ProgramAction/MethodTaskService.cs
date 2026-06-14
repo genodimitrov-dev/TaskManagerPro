@@ -2,6 +2,7 @@ using TaskManagerPro.Models;
 using TaskManagerPro.Enums;
 using System.Runtime.Intrinsics.Arm;
 using System.Text.Json;
+using System.Runtime.CompilerServices;
 
 namespace TaskManagerPro.Services
 {
@@ -73,6 +74,7 @@ namespace TaskManagerPro.Services
             Console.WriteLine("1. See all tasks");
             Console.WriteLine("2. See tasks by status");
             Console.WriteLine("3. See tasks by priority");
+            Console.WriteLine("4. See tasks that are due soon");
             Console.Write("Which tasks would you like to see: ");
             int seeChoice;
             if(!int.TryParse(Console.ReadLine(), out seeChoice))
@@ -123,7 +125,7 @@ namespace TaskManagerPro.Services
                     Console.WriteLine("1. Low prriority tasks");
                     Console.WriteLine("2. Meduim priority tasks");
                     Console.WriteLine("3. High priority tasks");
-                    System.Console.Write("Which tasks would you like to see: ");
+                    Console.Write("Which tasks would you like to see: ");
                     int thirdChoice;
                     if(!int.TryParse(Console.ReadLine(), out thirdChoice))
                     {
@@ -142,6 +144,27 @@ namespace TaskManagerPro.Services
                             ShowTasksByPriority(Priority.High);
                         break;
                         default:
+                        break;
+                    }
+                break;
+                case 4:
+                    Console.WriteLine("Tasks that are due:");
+                    Console.WriteLine("1. Today");
+                    Console.WriteLine("2. This week");
+                    Console.Write("Which tasks would you like to see: ");
+                    int forthChoice;
+                    if(!int.TryParse(Console.ReadLine(), out forthChoice))
+                    {
+                        Console.WriteLine("Invalid choice. Please choose a number: ");
+                        return;
+                    }
+                    switch(forthChoice)
+                    {
+                        case 1:
+                            ShowDueTodayTasks();
+                        break;
+                        case 2:
+                            ShowDueThisWeekTasks();
                         break;
                     }
                 break;
@@ -474,6 +497,69 @@ namespace TaskManagerPro.Services
             Console.WriteLine("Task marked as completed.");
 
         }
+        public void ShowStatistics()
+        {
+            if (!tasks.Any())
+            {
+                Console.WriteLine("No tasks available.");
+                return;
+            }
+            int taskCount = tasks.Count;
+            int completedTasks = tasks.Count(t => t.Status == TaskStat.Completed);
+
+            int pendingTasks = tasks.Count(t => t.Status == TaskStat.Pending);
+
+            int inProgressTasks = tasks.Count(t => t.Status == TaskStat.InProgress);
+
+            double completionRate = (double)completedTasks / taskCount * 100;
+
+            Console.WriteLine();
+            Console.WriteLine("===== TASK STATISTICS =====");
+
+            Console.WriteLine($"Total Tasks: {taskCount}");
+
+            Console.WriteLine($"Completed Tasks: {completedTasks}");
+
+            Console.WriteLine($"Pending Tasks: {pendingTasks}");
+
+            Console.WriteLine($"In Progress Tasks: {inProgressTasks}");
+
+            Console.WriteLine($"Completion Rate: {completionRate:F2}%");
+        }
+        public void ShowDueTodayTasks()
+        {
+            List<TaskItem> tasksDueToday = tasks.Where(t => t.Deadline.Date != DateTime.Today && t.Status != TaskStat.Completed).ToList();
+            if (!tasksDueToday.Any())
+            {
+                Console.WriteLine("No tasks due today.");
+                return;
+            }
+
+            Console.WriteLine($"Found {tasksDueToday.Count} task(s) due today.");
+
+            foreach (TaskItem task in tasksDueToday)
+            {
+                ViewTask(task);
+            }
+        }
+        public void ShowDueThisWeekTasks()
+        {
+            DateTime today = DateTime.Today;
+            DateTime nextWeek = today.AddDays(7);
+            List<TaskItem> tasksDueThisWeek = tasks.Where(t => t.Deadline.Date >= today && t.Deadline.Date <= nextWeek && t.Status != TaskStat.Completed).ToList();
+            if (!tasksDueThisWeek.Any())
+            {
+                Console.WriteLine("No tasks due this week.");
+                return;
+            }
+
+            Console.WriteLine($"Found {tasksDueThisWeek.Count} task(s) due this week.");
+
+            foreach (TaskItem task in tasksDueThisWeek)
+            {
+                ViewTask(task);
+            }
+        } 
 
     }
 

@@ -16,6 +16,11 @@ public class Program
     Console.WriteLine("1. Add Task");
     Console.WriteLine("2. View Tasks");
     Console.WriteLine("3. Edit tasks");
+    Console.WriteLine("4. Remove tasks");
+    Console.WriteLine("5. Search tasks");
+    Console.WriteLine("6. Save tasks");
+    Console.WriteLine("7. Mark task as completed");
+    Console.WriteLine("8. Show statistics");
     Console.WriteLine("0. Exit");
 }
 
