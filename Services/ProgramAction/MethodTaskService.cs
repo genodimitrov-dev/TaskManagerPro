@@ -75,6 +75,7 @@ namespace TaskManagerPro.Services
             Console.WriteLine("2. See tasks by status");
             Console.WriteLine("3. See tasks by priority");
             Console.WriteLine("4. See tasks that are due soon");
+            Console.WriteLine("5. See tasks sorted by deadline");
             Console.Write("Which tasks would you like to see: ");
             int seeChoice;
             if(!int.TryParse(Console.ReadLine(), out seeChoice))
@@ -167,6 +168,11 @@ namespace TaskManagerPro.Services
                             ShowDueThisWeekTasks();
                         break;
                     }
+                break;
+                case 5:
+                    Console.WriteLine("These are all the task sorted by deadline:");
+                    Console.WriteLine("--------------------");
+                    SortTasksByDeadline();
                 break;
                 default:
                 break;
@@ -560,6 +566,51 @@ namespace TaskManagerPro.Services
                 ViewTask(task);
             }
         } 
+        public void ExportTasksReport()
+        {
+            if (!tasks.Any())
+            {
+                Console.WriteLine("No tasks available.");
+                return;
+            }
+
+            List<string> reportLines = new List<string>();
+
+            reportLines.Add("===== TASK REPORT =====");
+            reportLines.Add("");
+
+            foreach (TaskItem task in tasks)
+            {
+                reportLines.Add($"ID: {task.Id}");
+                reportLines.Add($"Title: {task.Title}");
+                reportLines.Add($"Description: {task.Description}");
+                reportLines.Add($"Priority: {task.Priority}");
+                reportLines.Add($"Status: {task.Status}");
+                reportLines.Add($"Deadline: {task.Deadline:yyyy-MM-dd}");
+                reportLines.Add("--------------------");
+            }
+
+            File.WriteAllLines("TaskReport.txt",reportLines);
+
+            Console.WriteLine("Report exported successfully.");
+        }
+        public void SortTasksByDeadline()
+        {
+            List<TaskItem> sortedTasks = tasks.OrderBy(t => t.Deadline).ToList();
+
+            if (!sortedTasks.Any())
+            {
+                Console.WriteLine("No tasks available.");
+                return;
+            }
+
+            Console.WriteLine("Tasks sorted by deadline:");
+
+            foreach (TaskItem task in sortedTasks)
+            {
+                ViewTask(task);
+            }
+        }
 
     }
 

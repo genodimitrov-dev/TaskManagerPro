@@ -21,6 +21,7 @@ public class Program
     Console.WriteLine("6. Save tasks");
     Console.WriteLine("7. Mark task as completed");
     Console.WriteLine("8. Show statistics");
+    Console.WriteLine("9. Export tasks report");
     Console.WriteLine("0. Exit");
 }
 
